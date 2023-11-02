@@ -12,7 +12,7 @@ sys.path.append(PARENT_DIR)
 
 from models.model import Base, ClassType, CustomerType, CustomerSatisfaction, Gender, TravelType
 
-def wirte_to_sqlite():
+def write_to_sqlite():
     engine = create_engine("sqlite:///data/airline_database.sqlite")
 
     if database_exists(engine.url):
@@ -87,4 +87,4 @@ def wirte_to_sqlite():
         session.commit()
 
 if __name__ == '__main__':
-    wirte_to_sqlite()
+    write_to_sqlite()
