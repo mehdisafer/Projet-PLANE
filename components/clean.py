@@ -8,13 +8,8 @@ def clean():
 
 # Conversion des noms de colonnes en minuscule
     df.columns = df.columns.str.lower()
-
-# Addition des colonnes departure delay in minutes et arrival delay in minutes
-    df['total delay in minutes'] = df['departure delay in minutes'] + df['arrival delay in minutes']
-
-# Suprimer les colonnes departure delay in minutes, arrival delay in minutes et id
+# Suprimer les colonnes arrival delay in minutes et id
     df.drop(["departure delay in minutes"], axis=1, inplace=True)
-    df.drop(["arrival delay in minutes"], axis=1, inplace=True)
     df.drop(["id"], axis=1, inplace=True)
 
 # Créer une liste des colonnes catégorielles
