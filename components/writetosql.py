@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-def writetosql():
+def write_to_sqlite():
 # Spécifiez le chemin de la base de données SQLite
     db_path = 'chemin_vers_votre_base_de_donnees.sqlite'
 
