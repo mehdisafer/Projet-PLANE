@@ -12,6 +12,9 @@ sys.path.append(PARENT_DIR)
 
 from models.model import Base, ClassType, CustomerType, CustomerSatisfaction, Gender, TravelType
 
+""" 
+
+"""
 def read_from_sqlite():
     engine = create_engine("sqlite:///data/airline_database.sqlite")
     Session = sessionmaker(bind=engine)
