@@ -15,6 +15,11 @@ engine = create_engine("sqlite:///data/airline_database.sqlite")
 
 
 def read_from_sqlite():
+    """Reads all data from the SQLite database.
+
+    Returns:
+        A Pandas DataFrame containing all data from the database.
+    """
     Session = sessionmaker(bind=engine)
 
     with Session.begin() as session:
@@ -55,6 +60,14 @@ def read_from_sqlite():
 
 
 def get_gender(filter=None):
+    """Gets all genders from the database, or a specific gender if a filter is provided.
+
+    Args:
+        filter: A string filter for the gender.
+
+    Returns:
+        A list of strings containing all genders from the database, or a specific gender if a filter is provided.
+    """
     Session = sessionmaker(bind=engine)
 
     with Session.begin() as session:
@@ -66,6 +79,14 @@ def get_gender(filter=None):
 
 
 def get_customer_type(filter=None):
+    """Gets all genders from the database, or a specific gender if a filter is provided.
+
+    Args:
+        filter: A string filter for the gender.
+
+    Returns:
+        A list of strings containing all genders from the database, or a specific gender if a filter is provided.
+    """
     Session = sessionmaker(bind=engine)
 
     with Session.begin() as session:
@@ -78,6 +99,14 @@ def get_customer_type(filter=None):
 
 
 def get_travel_type(filter=None):
+    """Gets all genders from the database, or a specific gender if a filter is provided.
+
+    Args:
+        filter: A string filter for the gender.
+
+    Returns:
+        A list of strings containing all genders from the database, or a specific gender if a filter is provided.
+    """
     Session = sessionmaker(bind=engine)
 
     with Session.begin() as session:
@@ -90,6 +119,14 @@ def get_travel_type(filter=None):
 
 
 def get_class_type(filter=None):
+    """Gets all genders from the database, or a specific gender if a filter is provided.
+
+    Args:
+        filter: A string filter for the gender.
+
+    Returns:
+        A list of strings containing all genders from the database, or a specific gender if a filter is provided.
+    """
     Session = sessionmaker(bind=engine)
 
     with Session.begin() as session:
