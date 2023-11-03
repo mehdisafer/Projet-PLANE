@@ -8,6 +8,7 @@ import seaborn as sns
 from components.readfromsql import read_from_sqlite
 from catboost import CatBoostClassifier
 from catboost import CatBoostClassifier
+from streamlit_lottie import st_lottie
 
 __login__obj = __login__(auth_token = "courier_auth_token", 
                     company_name = "Shims",
@@ -19,14 +20,29 @@ __login__obj = __login__(auth_token = "courier_auth_token",
 LOGGED_IN = __login__obj.build_login_ui()
 
 
+with st.sidebar:
+    st.markdown('<hr>', unsafe_allow_html=True)
+    st.markdown("**Le modèle a été entrainé sur un dataset de **+** de **100K** lignes de données, provenant de **+** de **100** entreprises différentes.**")
+    st.markdown("**Voici quelques exemples d'utilisation du modèle :**")
+    st.markdown("* **Identifier les sources de satisfaction et d'insatisfaction des clients.**")
+    st.markdown("* **Développer des stratégies pour améliorer la satisfaction des clients.**")
+    st.markdown("* **Mesurer l'impact des changements apportés à l'expérience client.**")
+    st.markdown('<hr>', unsafe_allow_html=True)
+    st.markdown("## Description :")
+    st.markdown("**Notre modèle est là pour vous aider à améliorer la satisfaction de vos clients.**")
+    st.markdown("**Il utilise l'apprentissage automatique pour analyser les données sur les interactions entre les clients et votre entreprise.**")
+    st.markdown("**Cela lui permet de comprendre les facteurs qui influencent la satisfaction des clients et de proposer des recommandations pour l'améliorer.**")
+    st.markdown('<hr>', unsafe_allow_html=True)
+
 if  LOGGED_IN == True:
-    st.title('Prediction de la :blue[satisfaction du client] :sunglasses:')
+    st.title('Satisfaction :blue[Series X] :red[360]')
     def evaluation():
         return range(6)
         
-    st.header("Accueil ")
+    st.header("Accueil :sunglasses:")
     
     deroulant = st.selectbox("Choisir :",["Formulaire","Graphique","About-us"])
+    st.markdown('<hr>', unsafe_allow_html=True)
 
     if deroulant == "Formulaire":
         def evaluation():
