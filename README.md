@@ -17,3 +17,5 @@ pour lancer l'image docker :
 vous pouvez changer le port externe selon vos besoin la première valeur après -p
 vous pouvez changer le nom de votre docker ici nous avons utilisé "satisfactiondocker",
 si vous avez utilisé un autre nom d'image lors de la création veuillez la changer aussi
+
+ouvrez un navigateur vers http://localhost:8501
