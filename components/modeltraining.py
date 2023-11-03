@@ -2,9 +2,14 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from catboost import CatBoostClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import os
+import sys
+
+PARENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(PARENT_DIR)
 
 # Charger les données
-df = pd.read_csv("Airline_Dataset.csv")
+df = pd.read_csv("data/Airline_Dataset.csv")
 
 # conversion des noms de colonnes en minuscule
 df.columns = df.columns.str.lower()
