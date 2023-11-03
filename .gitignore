@@ -1,6 +1,5 @@
 # maxignore
 maxignore/
-catboost_info/
 components/__pycache__/
 configs/__pycache__/
 data/__pycache__/
