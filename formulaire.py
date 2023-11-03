@@ -34,6 +34,8 @@
 # st.radio('Service en vol:', evaluation(), horizontal=True)
 # st.radio('Propreté:', evaluation(), horizontal=True)
 import streamlit as st
+import pandas as pd
+from catboost import CatBoostClassifier
 
 def evaluation():
     return range(6)
@@ -153,11 +155,7 @@ if age and flight_distance and arrival_delay_in_minutes and gender_Male is not N
         'class_Eco': 1,  # Remplissez en fonction de la sélection
         'class_Eco_Plus': 0,  # Remplissez en fonction de la sélection
     }
-    import pandas as pd
-
     manual_df = pd.DataFrame([manual_data])
-    from catboost import CatBoostClassifier
-
     model = CatBoostClassifier()
     model.load_model('components/modele_catboost.cbm')
     # Utilisez ce dictionnaire pour effectuer des prédictions avec votre modèle CatBoost
