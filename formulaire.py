@@ -122,47 +122,54 @@ else:  # Si l'utilisateur choisit "Eco Plus"
     class_Eco = 0
     class_Eco_Plus = 1
 
+if age and flight_distance and arrival_delay_in_minutes and gender_Male is not None and gender_Female is not None and customer_type_Loyal_Customer is not None and customer_type_disloyal_Customer is not None and type_of_travel_Business_travel is not None and type_of_travel_Personal_Travel is not None and class_Business is not None and class_Eco is not None and class_Eco_Plus is not None:
 
-# Créez un dictionnaire avec les données collectées
-manual_data = {
-    'age': int(age),
-    'flight_distance': int(flight_distance),
-    'inflight_wifi_service': wifi_service,
-    'departure_arrival_time_convenient': departure_arrival_time_convenient,
-    'ease_of_online_booking': online_booking,
-    'gate_location': gate_location,
-    'food_and_drink': food_and_drink,
-    'online_boarding': online_boarding,
-    'seat_comfort': seat_comfort,
-    'inflight_entertainment': inflight_entertainment,
-    'on-board_service': onboard_service,
-    'leg_room_service': leg_room_service,
-    'baggage_handling': baggage_handling,
-    'checkin_service': checkin_service,
-    'inflight_service': inflight_service,
-    'cleanliness': cleanliness,
-    'arrival_delay_in_minutes': int(arrival_delay_in_minutes),
-    'gender_Female': 0,  # Remplissez en fonction de la sélection
-    'gender_Male': 1,  # Remplissez en fonction de la sélection
-    'customer_type_Loyal_Customer': 0,  # Remplissez en fonction de la sélection
-    'customer_type_disloyal_Customer': 1,  # Remplissez en fonction de la sélection
-    'type_of_travel_Business_travel': 0,  # Remplissez en fonction de la sélection
-    'type_of_travel_Personal_Travel': 1,  # Remplissez en fonction de la sélection
-    'class_Business': 0,  # Remplissez en fonction de la sélection
-    'class_Eco': 1,  # Remplissez en fonction de la sélection
-    'class_Eco_Plus': 0,  # Remplissez en fonction de la sélection
-}
-import pandas as pd
+    # Créez un dictionnaire avec les données collectées
+    manual_data = {
+        'age': int(age),
+        'flight_distance': int(flight_distance),
+        'inflight_wifi_service': wifi_service,
+        'departure_arrival_time_convenient': departure_arrival_time_convenient,
+        'ease_of_online_booking': online_booking,
+        'gate_location': gate_location,
+        'food_and_drink': food_and_drink,
+        'online_boarding': online_boarding,
+        'seat_comfort': seat_comfort,
+        'inflight_entertainment': inflight_entertainment,
+        'on-board_service': onboard_service,
+        'leg_room_service': leg_room_service,
+        'baggage_handling': baggage_handling,
+        'checkin_service': checkin_service,
+        'inflight_service': inflight_service,
+        'cleanliness': cleanliness,
+        'arrival_delay_in_minutes': int(arrival_delay_in_minutes),
+        'gender_Female': 0,  # Remplissez en fonction de la sélection
+        'gender_Male': 1,  # Remplissez en fonction de la sélection
+        'customer_type_Loyal_Customer': 0,  # Remplissez en fonction de la sélection
+        'customer_type_disloyal_Customer': 1,  # Remplissez en fonction de la sélection
+        'type_of_travel_Business_travel': 0,  # Remplissez en fonction de la sélection
+        'type_of_travel_Personal_Travel': 1,  # Remplissez en fonction de la sélection
+        'class_Business': 0,  # Remplissez en fonction de la sélection
+        'class_Eco': 1,  # Remplissez en fonction de la sélection
+        'class_Eco_Plus': 0,  # Remplissez en fonction de la sélection
+    }
+    import pandas as pd
 
-manual_df = pd.DataFrame([manual_data])
-from catboost import CatBoostClassifier
+    manual_df = pd.DataFrame([manual_data])
+    from catboost import CatBoostClassifier
 
-model = CatBoostClassifier()
-model.load_model('components/modele_catboost.cbm')
-# Utilisez ce dictionnaire pour effectuer des prédictions avec votre modèle CatBoost
-y_manual_pred = model.predict(pd.DataFrame([manual_data]))
+    model = CatBoostClassifier()
+    model.load_model('components/modele_catboost.cbm')
+    # Utilisez ce dictionnaire pour effectuer des prédictions avec votre modèle CatBoost
+    y_manual_pred = model.predict(pd.DataFrame([manual_data]))
 
-# Collectez les données et effectuez les prédictions comme expliqué précédemment
+    # Collectez les données et effectuez les prédictions comme expliqué précédemment
 
-# Affichez les prédictions sur la page Streamlit
-st.write("Résultat de la prédiction:", y_manual_pred)
+    # Affichez les prédictions sur la page Streamlit
+        # Effectuez la prédiction
+    y_manual_pred = model.predict(pd.DataFrame([manual_data]))
+        # Affichez le résultat de la prédiction
+    st.write("Résultat de la prédiction:", y_manual_pred)
+else:
+        # Affichez un message d'erreur si un champ obligatoire n'est pas rempli
+    st.error("Veuillez remplir tous les champs obligatoires pour effectuer la prédiction.")
