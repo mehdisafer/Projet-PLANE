@@ -11,7 +11,6 @@ from catboost import CatBoostClassifier
 def load_model():
     model = CatBoostClassifier()
     model.load_model('components/modele_catboost.cbm')
-
     return model
 
 
@@ -47,4 +46,11 @@ hist = plt.hist(data[selected_numeric_column],
                 bins=num_bins, edgecolor="k")
 st.pyplot(fig)
 
-st.write(model)
+
+feature_importance = model.feature_importances_
+sorted_idx = np.argsort(feature_importance)
+fig = plt.figure(figsize=(12, 6))
+plt.barh(range(len(sorted_idx)), feature_importance[sorted_idx], align='center')
+plt.yticks(range(len(sorted_idx)), np.array(data.columns)[sorted_idx])
+plt.title('Feature Importance')
+st.plotly_chart(fig)

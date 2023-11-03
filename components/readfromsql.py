@@ -102,5 +102,4 @@ def get_class_type(filter=None):
 
 
 if __name__ == '__main__':
-    for i in get_gender():
-        print(*i)
+    print(read_from_sqlite())
