@@ -2,6 +2,10 @@
 maxignore/
 catboost_info/
 components/__pycache__/
+configs/__pycache__/
+data/__pycache__/
+models/__pycache__/
+pages/__pycache__/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
