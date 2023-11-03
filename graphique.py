@@ -18,6 +18,7 @@ def load_model():
 def load_dataframe():
     data = read_from_sqlite()
     data.columns = data.columns.str.replace('_', ' ').str.capitalize()
+    data.drop(["Id"], axis=1, inplace=True)
     return data
 
 
@@ -47,10 +48,15 @@ hist = plt.hist(data[selected_numeric_column],
 st.pyplot(fig)
 
 
-feature_importance = model.feature_importances_
+
+feature_importance = model.get_feature_importance()
 sorted_idx = np.argsort(feature_importance)
-fig = plt.figure(figsize=(12, 6))
-plt.barh(range(len(sorted_idx)), feature_importance[sorted_idx], align='center')
-plt.yticks(range(len(sorted_idx)), np.array(data.columns)[sorted_idx])
-plt.title('Feature Importance')
-st.plotly_chart(fig)
+fig, ax = plt.subplots()
+
+ax.barh(range(len(sorted_idx)), feature_importance[sorted_idx], align='center')
+ax.set_facecolor("white")
+ax.set_yticks(range(0,len(sorted_idx)))
+ax.set_yticklabels(np.array(model.feature_names_)[sorted_idx])
+
+ax.set_title('Feature Importance')
+st.pyplot(fig, use_container_width=True)
