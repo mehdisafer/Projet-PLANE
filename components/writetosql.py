@@ -88,13 +88,3 @@ def write_to_sqlite():
 
 if __name__ == '__main__':
     write_to_sqlite()
-
-
-
-```python
-import sys
-import os
-playground_dir = os.path.dirname(os.path.abspath(__file__))
-models = os.path.join(playground_dir, "../models")
-sys.path.append(models)
-```
