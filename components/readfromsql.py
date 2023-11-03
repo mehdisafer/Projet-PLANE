@@ -1,4 +1,3 @@
-from models.model import Base, ClassType, CustomerType, CustomerSatisfaction, Gender, TravelType
 import os
 import sys
 import pandas as pd
@@ -10,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 PARENT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(PARENT_DIR)
 
+from models.model import Base, ClassType, CustomerType, CustomerSatisfaction, Gender, TravelType, Satisfaction
 
 engine = create_engine("sqlite:///data/airline_database.sqlite")
 
@@ -42,9 +42,11 @@ def read_from_sqlite():
             CustomerSatisfaction.cleanliness,
             CustomerSatisfaction.departure_delay_in_minutes,
             CustomerSatisfaction.arrival_delay_in_minutes,
+            Satisfaction.satisfaction
         ).join(Gender, Gender.id == CustomerSatisfaction.id_gender).join(
             CustomerType, CustomerType.id == CustomerSatisfaction.id_customer_type).join(
             TravelType, TravelType.id == CustomerSatisfaction.id_travel_type).join(
+            Satisfaction, Satisfaction.id == CustomerSatisfaction.id_satisfaction).join(
             ClassType, ClassType.id == CustomerSatisfaction.id_class_type).all()
 
         df = pd.DataFrame(result)
