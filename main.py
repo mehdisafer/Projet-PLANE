@@ -186,7 +186,6 @@ if  LOGGED_IN == True:
         def load_model():
             model = CatBoostClassifier()
             model.load_model('components/modele_catboost.cbm')
-
             return model
 
 
@@ -194,6 +193,7 @@ if  LOGGED_IN == True:
         def load_dataframe():
             data = read_from_sqlite()
             data.columns = data.columns.str.replace('_', ' ').str.capitalize()
+            data.drop(["Id"], axis=1, inplace=True)
             return data
 
 
@@ -222,5 +222,16 @@ if  LOGGED_IN == True:
                         bins=num_bins, edgecolor="k")
         st.pyplot(fig)
 
-        st.write(model)
 
+
+        feature_importance = model.get_feature_importance()
+        sorted_idx = np.argsort(feature_importance)
+        fig, ax = plt.subplots()
+
+        ax.barh(range(len(sorted_idx)), feature_importance[sorted_idx], align='center')
+        ax.set_facecolor("white")
+        ax.set_yticks(range(0,len(sorted_idx)))
+        ax.set_yticklabels(np.array(model.feature_names_)[sorted_idx])
+
+        ax.set_title('Feature Importance')
+        st.pyplot(fig, use_container_width=True)

@@ -13,6 +13,13 @@ sys.path.append(PARENT_DIR)
 from models.model import Base, ClassType, CustomerType, CustomerSatisfaction, Gender, TravelType, Satisfaction
 
 def write_to_sqlite():
+    """Writes the data from the CSV file to the SQLite database.
+
+    Creates the database if it does not exist, and drops and recreates it if it does exist.
+    Then, creates the tables in the database if they do not exist.
+
+    Finally, inserts the data from the CSV file into the database tables.
+    """
     engine = create_engine("sqlite:///data/airline_database.sqlite")
 
     if database_exists(engine.url):
